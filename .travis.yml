@@ -3,21 +3,21 @@ services:
     - docker
 
 before_install: 
-    - docker build -t annvp/react-test -f ./client/Dockerfile.dev ./client
+    - docker build -t annvp24/react-test -f ./client/Dockerfile.dev ./client
 
 script:  
-    - docker run annvp/react-test npm run test  -- --coverage --watchAll=false
+    - docker run annvp24/react-test npm run test  -- --coverage --watchAll=false
 
 after_success:
-    - docker build -t annvp/multi-client ./client
-    - docker build -t annvp/multi-nginx ./nginx
-    - docker build -t annvp/multi-server ./server
-    - docker build -t annvp/multi-worker ./worker
+    - docker build -t annvp24/multi-client ./client
+    - docker build -t annvp24/multi-nginx ./nginx
+    - docker build -t annvp24/multi-server ./server
+    - docker build -t annvp24/multi-worker ./worker
     
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-    - docker push annvp/multi-client
-    - docker push annvp/multi-nginx
-    - docker push annvp/multi-server
-    - docker push annvp/multi-worker
+    - docker push annvp24/multi-client
+    - docker push annvp24/multi-nginx
+    - docker push annvp24/multi-server
+    - docker push annvp24/multi-worker
 
 
